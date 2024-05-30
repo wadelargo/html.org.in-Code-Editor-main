@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML Code Editor</title>
+    <!-- Include Ace Editor from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.15.1/ace.js"></script>
+    <style>
+        /* CSS Styling */
+        html, body {
+            height: 100%; /* Set the height of html and body to 100% */
+            margin: 0; /* Remove default margin */
+            /* Set a background color for the entire page */
+            background-color: #f0f0f0; /* Light gray color */
+            color: #000000; /* Black text color */
+        }
+
+        #container {
+            display: flex; /* Flexbox layout for horizontal arrangement */
+            height: 100%; /* Make the container take up 100% of the height */
+        }
+
+        #editor {
+            width: 50%; /* Editor takes up half the screen */
+            height: 100%; /* Make the editor take up 100% of the height */
+            border-right: 1px solid #ccc; /* Separator between editor and output */
+        }
+
+        #output {
+            width: 50%; /* Output takes up half the screen */
+            height: 100%; /* Make the output take up 100% of the height */
+            padding: 10px;
+            overflow-y: auto;
+            /* Set a background color for the output area */
+            background-color: #f7f7f7; /* Lighter gray color */
+        }
+
+        /* Style the Ace Editor font size dropdown */
+        #font-size {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML Code Editor</h1>
+    
+    <!-- Font size dropdown menu -->
+    <label for="font-size">Choose font size:</label>
+    <select id="font-size">
+        <option value="12">12</option>
+        <option value="14">14</option>
+        <option value="16">16</option>
+        <option value="18">18</option>
+        <option value="20">20</option>
+        <option value="22">22</option>
+        <option value="24">24</option>
+        <option value="26">26</option>
+        <option value="28">28</option>
+        <option value="30">30</option>
+    </select>
+
+    <!-- Button to run HTML code -->
+    <button id="run-btn">Run HTML</button>
+
+    <!-- Container for horizontal layout -->
+    <div id="container">
+        <!-- Ace Editor for code editing -->
+        <div id="editor"></div>
+        
+        <!-- Div for displaying output -->
+        <div id="output"></div>
+    </div>
+
+    <script>
+        // Initialize Ace Editor
+        var editor = ace.edit('editor');
+        editor.setTheme('ace/theme/monokai');
+        editor.session.setMode('ace/mode/html');
+        editor.setOption('showPrintMargin', false);
+        
+        // Set initial font size
+        editor.setFontSize(14);
+
+        // Function to update font size based on user's selection
+        function updateFontSize() {
+            var fontSize = document.getElementById('font-size').value;
+            // Update Ace Editor font size
+            editor.setFontSize(parseInt(fontSize));
+        }
+
+        // Attach event listener to font size dropdown
+        document.getElementById('font-size').addEventListener('change', updateFontSize);
+
+        // Run button click handler
+        document.getElementById('run-btn').addEventListener('click', function() {
+            // Get the code from the editor
+            var code = editor.getValue();
+
+            // Display the code as HTML in the output div
+            document.getElementById('output').innerHTML = code;
+        });
+    </script>
+</body>
+</html>

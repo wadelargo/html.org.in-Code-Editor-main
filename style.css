@@ -1,0 +1,10 @@
+#editor {
+    height: 300px;
+    border: 1px solid #ccc;
+}
+
+#output {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
